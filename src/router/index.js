@@ -70,6 +70,42 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
+  // 项目笔记
+  {
+    path: '/project-note',
+    component: Layout,
+    redirect: '/project-note',
+    name: '项目笔记',
+    meta: { title: '项目笔记', icon: 'dashboard', affix: true },
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: '项目笔记',
+        meta: { title: '项目笔记', icon: 'dashboard' },
+        children: [
+          {
+            path: 'dashboard',
+            component: () => import('@/views/project-note/elementui-table/index'),
+            name: 'elementui 表格',
+            meta: { title: 'elementui 表格', icon: 'dashboard' }
+          }
+          // {
+          //   path: 'dashboard',
+          //   component: () => import('@/views/dashboard/index'),
+          //   name: '项目笔记11111',
+          //   meta: { title: '项目笔记11111', icon: 'dashboard' }
+          // }
+        ]
+      },
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: '项目笔记2',
+        meta: { title: '项目笔记2', icon: 'dashboard' }
+      }
+    ]
+  },
   {
     path: '/',
     component: Layout,
@@ -91,7 +127,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/documentation/index'),
         name: 'Documentation',
-        meta: { title: 'documentation', icon: 'documentation', affix: true }
+        meta: { title: 'documentation', icon: 'documentation' }
       }
     ]
   },
