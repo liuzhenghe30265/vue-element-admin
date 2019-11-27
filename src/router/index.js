@@ -11,6 +11,7 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
+import projectNote from './modules/projectNote' // 项目笔记路由
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -70,46 +71,12 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
-  // 项目笔记
-  {
-    path: '/project-note',
-    component: Layout,
-    redirect: '/project-note',
-    name: '项目笔记',
-    meta: { title: '项目笔记', icon: 'dashboard', affix: true },
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: '项目笔记',
-        meta: { title: '项目笔记', icon: 'dashboard' },
-        children: [
-          {
-            path: 'dashboard',
-            component: () => import('@/views/project-note/elementui-table/index'),
-            name: 'elementui 表格',
-            meta: { title: 'elementui 表格', icon: 'dashboard' }
-          }
-          // {
-          //   path: 'dashboard',
-          //   component: () => import('@/views/dashboard/index'),
-          //   name: '项目笔记11111',
-          //   meta: { title: '项目笔记11111', icon: 'dashboard' }
-          // }
-        ]
-      },
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: '项目笔记2',
-        meta: { title: '项目笔记2', icon: 'dashboard' }
-      }
-    ]
-  },
+  projectNote, // 项目笔记路由
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    // redirect: '/dashboard',
+    redirect: '/elementui-table',
     children: [
       {
         path: 'dashboard',

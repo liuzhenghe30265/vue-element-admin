@@ -49,7 +49,9 @@ const i18n = new VueI18n({
   // options: en | zh | es
   locale: getLanguage(),
   // set locale messages
-  messages
+  messages,
+  // 去除国际化警告 [vue-i18n] Value of key 'route.XXX' is not a string!
+  silentTranslationWarn: true
 })
 
 export default i18n
