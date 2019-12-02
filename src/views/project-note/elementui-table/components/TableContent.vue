@@ -1,29 +1,46 @@
+/*
+ * @Author: liuzhenghe30265
+ * @Email: 15901450207@163.com
+ * @Date: 2019-12-01 17:05:37
+ * @Last Modified by: liuzhenghe30265
+ * @Last Modified time: 2019-12-01 17:17:25
+ * @Description: Description
+ */
 <template>
   <div>
     <el-table
-      :data="dataList"
-      border
       ref="multipleTable"
+      :data="dataResult.items"
+      border
       tooltip-effect="dark"
-      @selection-change="handleSelectionChange"
       style="width: 100%"
+      @selection-change="handleSelectionChange"
     >
-      <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="author" label="姓名" width="180"></el-table-column>
-      <el-table-column prop="sex" label="性别" width="180"></el-table-column>
-      <el-table-column prop="address" label="地址"></el-table-column>
-      <el-table-column prop="email" label="邮箱"></el-table-column>
-      <el-table-column prop="image" label="头像"></el-table-column>
+      <el-table-column type="selection" />
+      <el-table-column prop="id" label="ID" />
+      <el-table-column prop="author" label="Author" />
+      <el-table-column prop="title" label="title" />
+      <el-table-column prop="content_short" label="content_short" />
+      <el-table-column prop="display_time" label="Display_time" />
+      <el-table-column prop="pageviews" label="Pageviews" />
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+          <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button>
           <el-button type="text" size="small">编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination background layout="prev, pager, next" :total="dataTotal"></el-pagination>
+    <el-pagination
+      style="margin-top:10px;"
+      background
+      layout="total, prev, pager, next"
+      :current-page="currentPage"
+      :page-size="dataResult.limit"
+      :total="dataResult.total"
+      @current-change="pageChange"
+    />
     <div style="margin-top: 20px">
-      <el-button @click="toggleSelection([dataList[1], dataList[2]])">切换第二、第三行的选中状态</el-button>
+      <el-button @click="toggleSelection([dataResult.items[1], dataResult.items[2]])">切换第二、第三行的选中状态</el-button>
       <el-button @click="toggleSelection()">取消选择</el-button>
     </div>
   </div>
@@ -32,28 +49,25 @@
 <script>
 export default {
   name: 'TableContent',
+  props: {
+    dataResult: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
-      multipleSelection: [] // 选中的项
+      dataList: [],
+      multipleSelection: [], // 选中的项
+      currentPage: 1
     }
   },
-  props: {
-    dataList: {
-      type: Array,
-      required: true
-    },
-    dataTotal: {
-      type: Number,
-      required: true
-    }
-  },
-  created() {
-    console.log('------------')
-    console.log(this.dataList)
-    console.log(this.dataTotal)
-  },
+  created() {},
   mounted() {},
   methods: {
+    pageChange(page) {
+      this.$emit('pageChange', page)
+    },
     toggleSelection(rows) {
       if (rows) {
         rows.forEach(row => {
@@ -66,16 +80,6 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
-    }
-  },
-  props: {
-    dataList: {
-      type: Array,
-      required: true
-    },
-    dataTotal: {
-      type: Number,
-      required: true
     }
   }
 }

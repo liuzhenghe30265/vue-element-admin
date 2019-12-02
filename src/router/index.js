@@ -75,8 +75,8 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    // redirect: '/dashboard',
-    redirect: '/elementui-table',
+    redirect: '/dashboard',
+    // redirect: '/elementui-table',
     children: [
       {
         path: 'dashboard',

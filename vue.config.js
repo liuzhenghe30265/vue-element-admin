@@ -54,6 +54,7 @@ module.exports = {
     // it can be accessed in index.html to inject the correct title.
     name: name,
     resolve: {
+      extensions: [".js", ".vue", ".json", ".css"], //文件优先解析后缀名顺序
       alias: {
         '@': resolve('src')
       }
