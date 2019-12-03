@@ -2,8 +2,8 @@
  * @Author: liuzhenghe30265
  * @Email: 15901450207@163.com
  * @Date: 2019-12-01 17:05:37
- * @Last Modified by: liuzhenghe30265
- * @Last Modified time: 2019-12-01 17:17:25
+ * @Last Modified by: liuzhenghe
+ * @Last Modified time: 2019-12-03 18:42:23
  * @Description: Description
  */
 <template>
@@ -22,7 +22,7 @@
       <el-table-column prop="title" label="title" />
       <el-table-column prop="content_short" label="content_short" />
       <el-table-column prop="display_time" label="Display_time" />
-      <el-table-column prop="pageviews" label="Pageviews" />
+      <el-table-column prop="image_uri" label="image_uri" />
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button>
