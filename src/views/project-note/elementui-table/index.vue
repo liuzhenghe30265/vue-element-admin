@@ -3,56 +3,80 @@
  * @Email: 15901450207@163.com
  * @Date: 2019-12-01 17:05:55
  * @Last Modified by: liuzhenghe
- * @Last Modified time: 2019-12-03 18:48:27
- * @Description: Description
+ * @Last Modified time: 2019-12-04 17:02:25
+ * @Description: 表格页面
  */
 
 <template>
   <div>
     <!-- 静态表头表格 -->
     <div style="padding: 20px;">
-      <h2 style="margin-bottom: 10px;">静态表头表格</h2>
-      <table-content :data-result="dataResult" @pageChange="pageChange" />
+      <table-query @onQuery="onQuery" />
+      <table-content
+        :page-data-info="pageDataInfo"
+        :list-loading="listLoading"
+        @pageChange="pageChange"
+      />
     </div>
     <!-- 静态表头表格 E -->
   </div>
 </template>
 
 <script>
-import TableContent from './components/TableContent.vue'
-// import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article' // 使用 mockjs 模拟的数据
+import TableContent from './components/TableContent'
+import TableQuery from './components/TableQuery'
 import { peopleList } from '@/api/people' // 使用 mockjs 模拟的数据
 export default {
   name: 'ElementuiTable',
   components: {
-    TableContent
+    TableContent,
+    TableQuery
   },
   data() {
     return {
-      dataResult: {}, // 请求结果
-      // 查询条件
-      listQuery: {
-        importance: '',
-        type: '',
-        title: '',
+      SourcePage: 'indexPage', // 来源页面
+      // 页面数据
+      pageDataInfo: {
+        data: [],
         page: 1,
         limit: 5
-      }
+      },
+      // 查询条件
+      queryParams: {},
+      // 表格加载动画
+      listLoading: true
     }
   },
   mounted() {
     this.getPeopleList()
   },
   methods: {
+    // 查询
+    onQuery(obj) {
+      this.queryParams = obj
+      this.getPeopleList()
+    },
     // 获取数据列表
     getPeopleList(page) {
-      this.listQuery.page = page || 1
-      peopleList(this.listQuery).then(response => {
-        this.dataResult = response.data
-        this.dataResult.limit = this.listQuery.limit
-      }).catch(err => {
-        console.log(err)
-      })
+      const obj = {
+        page: page || 1,
+        limit: this.pageDataInfo.limit
+      }
+      const params = Object.assign({}, obj, this.queryParams)
+      this.listLoading = true
+      peopleList(params)
+        .then(response => {
+          this.pageDataInfo.data = response.data.items
+          this.pageDataInfo.total = response.data.total
+          // 模拟请求等待
+          // setTimeout(() => {
+          //   this.listLoading = false
+          // }, 500)
+          this.listLoading = false
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     // 页码改变
     pageChange(page) {

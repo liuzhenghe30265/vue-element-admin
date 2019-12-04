@@ -28,10 +28,10 @@ module.exports = {
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
-  productionSourceMap: false,
+  productionSourceMap: true,
   devServer: {
     port: port,
-    open: true,
+    open: false, // 启动服务后自动打开浏览器（为 true 时，启动后会打开两个相同的页面，可在 package.json 中 dev 下配置）
     overlay: {
       warnings: false,
       errors: true
@@ -54,7 +54,7 @@ module.exports = {
     // it can be accessed in index.html to inject the correct title.
     name: name,
     resolve: {
-      extensions: [".js", ".vue", ".json", ".css"], //文件优先解析后缀名顺序
+      extensions: ['.js', '.vue', '.json', '.css'], // 文件优先解析后缀名顺序
       alias: {
         '@': resolve('src')
       }
@@ -95,7 +95,8 @@ module.exports = {
     config
       // https://webpack.js.org/configuration/devtool/#development
       .when(process.env.NODE_ENV === 'development',
-        config => config.devtool('cheap-source-map')
+        // config => config.devtool('cheap-source-map')
+        config => config.devtool('source-map') // 解决控制台输出的打印结果和源码的行号不对应
       )
 
     config
