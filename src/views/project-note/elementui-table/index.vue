@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2019-12-01 17:05:55
  * @Last Modified by: liuzhenghe
- * @Last Modified time: 2019-12-04 17:02:25
+ * @Last Modified time: 2019-12-05 12:02:30
  * @Description: 表格页面
  */
 
@@ -49,6 +49,8 @@ export default {
   },
   mounted() {
     this.getPeopleList()
+    // vuex 测试
+    console.log(this.$store.getters.testVuex)
   },
   methods: {
     // 查询

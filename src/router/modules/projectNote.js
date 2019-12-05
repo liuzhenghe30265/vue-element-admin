@@ -3,7 +3,7 @@
  * @Email: liuzhenghe@btzh.cn
  * @Date: 2019-11-27 10:46:55
  * @Last Modified by: liuzhenghe
- * @Last Modified time: 2019-11-27 11:39:44
+ * @Last Modified time: 2019-12-05 14:13:47
  * @Description: 项目笔记路由配置
  */
 /** When your routing table is too long, you can split it into small modules**/
@@ -38,6 +38,12 @@ const projectNote = {
       //     meta: { title: 'element-ui 表格', noCache: true }
       //   }
       // ]
+    },
+    {
+      path: '/vuex-test',
+      component: () => import('@/views/project-note/vuex-test/index.vue'),
+      name: 'vuex-test',
+      meta: { title: 'vuex-test', noCache: true }
     },
     {
       path: 'line',

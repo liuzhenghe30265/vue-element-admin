@@ -30,7 +30,7 @@
       <el-table-column prop="email" label="Email" />
       <el-table-column prop="address" label="Address" />
       <el-table-column prop="createTime" label="CreateTime" />
-      <el-table-column prop="image_uri" label="image_uri">
+      <!-- <el-table-column prop="image_uri" label="image_uri">
         <template slot-scope="scope">
           <div
             class="img_box"
@@ -40,7 +40,7 @@
             <img :src="scope.row.image_uri" width="100%" />
           </div>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button>
