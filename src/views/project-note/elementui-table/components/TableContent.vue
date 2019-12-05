@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2019-12-01 17:05:37
  * @Last Modified by: liuzhenghe
- * @Last Modified time: 2019-12-04 18:23:09
+ * @Last Modified time: 2019-12-05 11:27:34
  * @Description: 表格内容
  */
 <template>
@@ -32,8 +32,12 @@
       <el-table-column prop="createTime" label="CreateTime" />
       <el-table-column prop="image_uri" label="image_uri">
         <template slot-scope="scope">
-          <div class="img_box" style="margin:0 auto;max-width:60px;" @click="opedDialogFun(scope.row.image_uri)">
-            <img :src="scope.row.image_uri" width="100%">
+          <div
+            class="img_box"
+            style="margin:0 auto;max-width:60px;"
+            @click="opedDialogFun(scope.row.image_uri)"
+          >
+            <img :src="scope.row.image_uri" width="100%" />
           </div>
         </template>
       </el-table-column>
@@ -90,13 +94,17 @@ export default {
       dialogVisible: {
         visible: false
       },
+      // 弹窗展示的数据
       dialogData: {
         title: ''
-      } // 弹窗展示的数据
+      }
     }
   },
   created() {},
-  mounted() {},
+  mounted() {
+    // vue-bus 测试
+    // this.$bus.emit('test-vuebus', 'vue-bus test')
+  },
   methods: {
     // 判断性别
     judgeGenderFun(gender) {
@@ -131,6 +139,12 @@ export default {
       this.dialogVisible.visible = true
       this.dialogData.title = '图片预览'
       this.dialogData.imageUrl = url
+    },
+    // 测试 vue-bus
+    testVuebus() {
+      this.$bus.emit('test-vuebus', { text: this.vueBusData })
+      this.$bus.emit('once')
+      this.vueBusData = ''
     }
   }
 }

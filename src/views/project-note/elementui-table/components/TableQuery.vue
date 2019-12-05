@@ -29,10 +29,18 @@ export default {
   props: {},
   data() {
     return {
+      // 查询条件参数
       queryParams: {
         name: ''
-      } // 查询条件参数
+      },
+      newVueBusData: ''
     }
+  },
+  created() {},
+  mounted() {
+    // this.$bus.on('test-vuebus', msg => {
+    //   console.log(msg)
+    // })
   },
   methods: {
     // 筛选

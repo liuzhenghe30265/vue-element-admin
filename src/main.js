@@ -20,6 +20,9 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
+import VueBus from 'vue-bus' // vue-bus
+Vue.use(VueBus)
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
