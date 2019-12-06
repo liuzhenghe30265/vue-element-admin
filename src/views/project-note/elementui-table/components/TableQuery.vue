@@ -3,7 +3,7 @@
  * @Email: liuzhenghe@btzh.cn
  * @Date: 2019-12-04 14:39:37
  * @Last Modified by: liuzhenghe
- * @Last Modified time: 2019-12-04 18:25:52
+ * @Last Modified time: 2019-12-06 15:45:35
  * @Description: 表格筛选
  */
 
@@ -37,11 +37,7 @@ export default {
     }
   },
   created() {},
-  mounted() {
-    // this.$bus.on('test-vuebus', msg => {
-    //   console.log(msg)
-    // })
-  },
+  mounted() {},
   methods: {
     // 筛选
     onQueryFun() {

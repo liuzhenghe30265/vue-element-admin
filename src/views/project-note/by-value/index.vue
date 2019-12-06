@@ -3,24 +3,24 @@
  * @Email: liuzhenghe@btzh.cn
  * @Date: 2019-12-05 14:01:50
  * @Last Modified by: liuzhenghe
- * @Last Modified time: 2019-12-05 15:21:20
+ * @Last Modified time: 2019-12-06 15:56:19
  * @Description: Description
  */
 <template>
-  <div>
-    <div class="component_box">
+  <div style="padding:20px;">
+    <div style="border:1px solid #ebebeb; padding:20px;">
       <h4>父组件</h4>
-      <div>{{ this.$store.getters.vuexData }}</div>
       <div>
-        <el-input v-model="inputValue" style="width:200px;margin:20px 0;" />
+        vuex 数据：
+        <b>{{ this.$store.getters.vuexData }}</b>
       </div>
-      <el-button @click="changeDataFun">修改 vuexData</el-button>
-      <div class="component_box">
-        <first-component />
+      <div style="margin: 20px 0;">
+        <el-input v-model="inputValue" style="width: 150px;" />
+        <el-button type="primary" @click="changeDataFun">修改 vuexData</el-button>
       </div>
-      <div class="component_box">
-        <second-component />
-      </div>
+
+      <first-component />
+      <second-component />
     </div>
   </div>
 </template>
@@ -38,8 +38,7 @@ export default {
       inputValue: ''
     }
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     changeDataFun() {
       this.$store.dispatch('testVuex/setData', this.inputValue)
@@ -49,9 +48,4 @@ export default {
 </script>
 
 <style lang="scss">
-.component_box {
-  padding: 20px;
-  margin: 20px;
-  border: 1px solid #dcdcdc;
-}
 </style>
