@@ -23,6 +23,11 @@ import * as filters from './filters' // global filters
 import VueBus from 'vue-bus' // vue-bus
 Vue.use(VueBus)
 
+// vue-awesome-swiper
+import VueAwesomeSwiper from 'vue-awesome-swiper' // 引入 vue-awesome-swiper
+import 'swiper/dist/css/swiper'
+Vue.use(VueAwesomeSwiper) // 使用 swiper
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
