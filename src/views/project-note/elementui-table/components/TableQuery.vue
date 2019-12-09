@@ -3,7 +3,7 @@
  * @Email: liuzhenghe@btzh.cn
  * @Date: 2019-12-04 14:39:37
  * @Last Modified by: liuzhenghe
- * @Last Modified time: 2019-12-06 15:45:35
+ * @Last Modified time: 2019-12-09 17:07:10
  * @Description: 表格筛选
  */
 
@@ -17,15 +17,23 @@
       <el-form-item>
         <el-button type="primary" @click="onQueryFun">查询</el-button>
         <el-button @click="resetForm('queryParams')">重置</el-button>
+        <el-button @click="addData()">新增</el-button>
       </el-form-item>
     </el-form>
     <!-- 筛选 E -->
+    <!-- 新增弹窗 -->
+    <popup-window :dialog-info="dialogInfo" />
+    <!-- 新增弹窗 E -->
   </div>
 </template>
 
 <script>
+import PopupWindow from '../../publicComponents/PopupWindow' // 弹窗
 export default {
   name: 'TableQuery',
+  components: {
+    PopupWindow
+  },
   props: {},
   data() {
     return {
@@ -33,7 +41,12 @@ export default {
       queryParams: {
         name: ''
       },
-      newVueBusData: ''
+      newVueBusData: '',
+      // 弹窗信息
+      dialogInfo: {
+        visible: false,
+        title: ''
+      }
     }
   },
   created() {},
@@ -49,6 +62,12 @@ export default {
       // 需要给 el-form-item 中的 prop 绑定值才可以重置输入的内容
       this.$refs[formName].resetFields()
       this.onQueryFun()
+    },
+    // 新增
+    addData() {
+      this.dialogInfo.visible = true
+      this.dialogInfo.title = '新增'
+      this.dialogInfo.source = 'addData'
     }
   }
 }

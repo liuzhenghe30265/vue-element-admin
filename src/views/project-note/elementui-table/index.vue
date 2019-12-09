@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2019-12-01 17:05:55
  * @Last Modified by: liuzhenghe
- * @Last Modified time: 2019-12-05 12:02:30
+ * @Last Modified time: 2019-12-09 16:32:09
  * @Description: 表格页面
  */
 
@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import TableContent from './components/TableContent'
 import TableQuery from './components/TableQuery'
+import TableContent from './components/TableContent'
 import { peopleList } from '@/api/people' // 使用 mockjs 模拟的数据
 export default {
   name: 'ElementuiTable',

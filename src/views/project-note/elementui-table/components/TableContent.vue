@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2019-12-01 17:05:37
  * @Last Modified by: liuzhenghe
- * @Last Modified time: 2019-12-06 15:47:21
+ * @Last Modified time: 2019-12-09 17:15:44
  * @Description: 表格内容
  */
 <template>
@@ -37,7 +37,7 @@
             style="margin:0 auto;max-width:60px;"
             @click="opedDialogFun(scope.row.image_uri)"
           >
-            <img :src="scope.row.image_uri" width="100%">
+            <img :src="scope.row.image_uri" width="100%" />
           </div>
         </template>
       </el-table-column>
@@ -64,7 +64,7 @@
       <el-button @click="toggleSelection()">取消选择</el-button>
     </div>
     <!-- 弹窗 -->
-    <popup-window :dialog-visible="dialogVisible" :dialog-data="dialogData" />
+    <popup-window :dialog-info="dialogInfo" />
     <!-- 弹窗 E -->
   </div>
 </template>
@@ -91,12 +91,11 @@ export default {
       dataList: [],
       multipleSelection: [], // 选中的项
       currentPage: 1,
-      dialogVisible: {
-        visible: false
-      },
-      // 弹窗展示的数据
-      dialogData: {
-        title: ''
+      // 弹窗信息
+      dialogInfo: {
+        visible: false,
+        title: '',
+        source: ''
       }
     }
   },
@@ -133,9 +132,10 @@ export default {
     handleClick(row) {},
     // 打开弹窗
     opedDialogFun(url) {
-      this.dialogVisible.visible = true
-      this.dialogData.title = '图片预览'
-      this.dialogData.imageUrl = url
+      this.dialogInfo.visible = true
+      this.dialogInfo.title = '图片预览'
+      this.dialogInfo.data = url
+      this.dialogInfo.source = 'previewPicture'
     }
   }
 }
